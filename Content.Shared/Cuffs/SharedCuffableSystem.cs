@@ -644,7 +644,23 @@ namespace Content.Shared.Cuffs
                 {
                     return;
                 }
+
+                // WD EDIT START
+                if (!cuff.CanSelfUnCuffable)
+                {
+                    _popup.PopupClient(Loc.GetString("cuffable-component-cannot-remove-self"), user, user);
+                    return;
+                }
+                // WD EDIT END
             }
+
+            // WD EDIT START
+            if (!isOwner && !cuff.CanOtherUnCuffable)
+            {
+                _popup.PopupClient(Loc.GetString("cuffable-component-cannot-remove-other", ("target", Identity.Name(target, EntityManager))), user, user);
+                return;
+            }
+            // WD EDIT END
 
             var doAfterEventArgs = new DoAfterArgs(EntityManager, user, uncuffTime, new UnCuffDoAfterEvent(), target, target, cuffsToRemove)
             {

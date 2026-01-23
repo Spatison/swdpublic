@@ -99,6 +99,14 @@ public sealed partial class HandcuffComponent : Component
     /// </summary>
     [DataField]
     public bool UncuffEasierWhenLarge = false;
+
+    // WD EDIT START
+    [DataField]
+    public bool CanSelfUnCuffable = true;
+
+    [DataField]
+    public bool CanOtherUnCuffable = true;
+    // WD EDIT END
 }
 
 /// <summary>
